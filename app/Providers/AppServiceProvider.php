@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Core\Example;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Spatie\Ignition\Ignition;
@@ -12,22 +13,22 @@ class AppServiceProvider extends AbstractServiceProvider implements BootableServ
 	{
 		// @todo only do this when debug is enabled
 		/**
-		 * ignition work for showing the error msg :
+		 * ignition work for showing php [like laravel] error msg :
 		 */
 		Ignition::make()->register();
 	}
 
 	public function register(): void
 	{
-		$this->getContainer()->add('name', function (){
-			return 'jewel';
-		});
+		// $this->getContainer()->add(Example::class, function (){
+		// 	return new Example();
+		// });
 	}
 
 	public function provides(string $id): bool
 	{
 		$services=[
-			'name',
+			// Example::class
 		];
 		return in_array($id, $services);
 	}

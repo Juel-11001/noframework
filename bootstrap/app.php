@@ -1,9 +1,11 @@
 <?php
 
 use App\Core\App;
+use App\Core\Example;
+use App\Core\View;
 use App\Providers\AppServiceProvider;
 use League\Container\Container;
-use Spatie\Ignition\Ignition;
+use League\Container\ReflectionContainer;
 
 
 //stop default error reporting php:
@@ -14,9 +16,13 @@ require '../vendor/autoload.php';
 
 //setup container
 $container=new Container();
+$container->delegate(new ReflectionContainer());
 $container->addServiceProvider(new AppServiceProvider());
 
-var_dump($container->get('name'));
+// $example=new Example (new View());
+// var_dump($example);
+
+var_dump($container->get(Example::class));
 die();
 $app = new App();
 
