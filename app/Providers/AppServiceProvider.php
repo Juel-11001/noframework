@@ -11,6 +11,7 @@ class AppServiceProvider extends AbstractServiceProvider implements BootableServ
 {
 	public function boot(): void
 	{
+		var_dump('run app!');
 		// @todo only do this when debug is enabled
 		/**
 		 * ignition work for showing php [like laravel] error msg :

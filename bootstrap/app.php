@@ -1,10 +1,8 @@
 <?php
 
 use App\Core\App;
-use App\Core\Example;
-use App\Core\View;
+use App\Core\Container;
 use App\Providers\AppServiceProvider;
-use League\Container\Container;
 use League\Container\ReflectionContainer;
 
 
@@ -15,14 +13,11 @@ require '../vendor/autoload.php';
 
 
 //setup container
-$container=new Container();
+// $container=new Container();
+$container=Container::getInstance();
 $container->delegate(new ReflectionContainer());
 $container->addServiceProvider(new AppServiceProvider());
 
-// $example=new Example (new View());
-// var_dump($example);
-
-var_dump($container->get(Example::class));
 die();
 $app = new App();
 
