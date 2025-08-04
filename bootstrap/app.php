@@ -9,7 +9,7 @@ use League\Container\ReflectionContainer;
 
 
 //stop default error reporting php:
-// error_reporting(0);
+error_reporting(0);
 
 require '../vendor/autoload.php';
 
@@ -21,8 +21,16 @@ $container->delegate(new ReflectionContainer());
 $container->addServiceProvider(new AppServiceProvider());
 $container->addServiceProvider(new ConfigServiceProvider());
 
+
+$config=$container->get(Config::class);
+
+foreach ($config->get('app.providers') as $provider){
+	$container->addServiceProvider(new $provider);
+}
+
+
 // dd($container->get(Config::class)->get('app.name'));
-dd($container->get(Config::class)->get('database.db'));
+// dd($container->get(Config::class)->get('database.db'));
 // die();
 
 $app = new App();
