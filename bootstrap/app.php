@@ -6,6 +6,7 @@ use App\Core\Container;
 use App\Providers\AppServiceProvider;
 use App\Providers\ConfigServiceProvider;
 use Dotenv\Dotenv;
+use Laminas\Diactoros\Request;
 use League\Container\ReflectionContainer;
 
 
@@ -33,6 +34,8 @@ $config=$container->get(Config::class);
 foreach ($config->get('app.providers') as $provider){
 	$container->addServiceProvider(new $provider);
 }
+var_dump($container->get(Request::class)->getQueryParams());
+die();
 
 
 // dd($container->get(Config::class)->get('app.name'));

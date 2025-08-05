@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Providers\AppServiceProvider;
+use App\Providers\RequestServiceProvider;
 
 return [
 	'name' => env('APP_NAME'),
@@ -8,6 +10,7 @@ return [
 	'debug'=>env('APP_DEBUG'),
 
 	'providers'=>[
-		AppServiceProvider::class
+		AppServiceProvider::class,
+		RequestServiceProvider::class,
 	]
 ];

@@ -20,7 +20,8 @@ class ConfigServiceProvider extends AbstractServiceProvider implements BootableS
 			// return new Config();
 			$config= new Config();
 			return $this->mergeConfigFromFiles($config);
-		});
+		})
+		->setShared();
 	}
 
 	public function provides(string $id): bool
