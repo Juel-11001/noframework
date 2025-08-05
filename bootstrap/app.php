@@ -5,6 +5,7 @@ use App\Core\App;
 use App\Core\Container;
 use App\Providers\AppServiceProvider;
 use App\Providers\ConfigServiceProvider;
+use Dotenv\Dotenv;
 use League\Container\ReflectionContainer;
 
 
@@ -21,6 +22,11 @@ $container->delegate(new ReflectionContainer());
 $container->addServiceProvider(new AppServiceProvider());
 $container->addServiceProvider(new ConfigServiceProvider());
 
+//env
+$dotenv=Dotenv::createImmutable(__DIR__. '/../');
+$dotenv->load();
+
+// dd($container->get(Config::class)->get('app.debug'));
 
 $config=$container->get(Config::class);
 
