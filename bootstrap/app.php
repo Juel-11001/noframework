@@ -7,6 +7,8 @@ use App\Providers\AppServiceProvider;
 use App\Providers\ConfigServiceProvider;
 use Dotenv\Dotenv;
 use Laminas\Diactoros\Request;
+use Laminas\Diactoros\Response;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Container\ReflectionContainer;
 use League\Route\Router;
 
@@ -49,7 +51,12 @@ $app = new App();
 //register route
 $router=$container->get(Router::class);
 $router->get('/', function (){
-	dd("home page");
+	// return ("home");
+	$response=new Response();
+	$response->getBody()->write("home");
+	return $response;
 });
+$response=$router->dispatch($container->get(Request::class));
+(new SapiEmitter())->emit($response);
 
 $app->run();
