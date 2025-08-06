@@ -8,6 +8,7 @@ use App\Providers\ConfigServiceProvider;
 use Dotenv\Dotenv;
 use Laminas\Diactoros\Request;
 use League\Container\ReflectionContainer;
+use League\Route\Router;
 
 
 //stop default error reporting php:
@@ -34,8 +35,8 @@ $config=$container->get(Config::class);
 foreach ($config->get('app.providers') as $provider){
 	$container->addServiceProvider(new $provider);
 }
-var_dump($container->get(Request::class)->getQueryParams());
-die();
+// var_dump($container->get(Request::class)->getQueryParams());
+// die();
 
 
 // dd($container->get(Config::class)->get('app.name'));
@@ -46,6 +47,9 @@ $app = new App();
 
 
 //register route
-
+$router=$container->get(Router::class);
+$router->get('/', function (){
+	dd("home page");
+});
 
 $app->run();
